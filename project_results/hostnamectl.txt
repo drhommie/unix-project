@@ -1,0 +1,18 @@
+     Static hostname: mephi-2026.domain.local
+           Icon name: computer-vm
+             Chassis: vm 🖴
+          Machine ID: e26dd0f6584d44d5b689e2b2b0885cda
+             Boot ID: ae422fc336c44f609db521ed48801e62
+      Virtualization: qemu
+    Operating System: Fedora Linux 43 (Workstation Edition)
+         CPE OS Name: cpe:/o:fedoraproject:fedora:43
+      OS Support End: Wed 2026-12-02
+OS Support Remaining: 8month 1w
+              Kernel: Linux 6.19.8-200.fc43.aarch64
+        Architecture: arm64
+     Hardware Vendor: QEMU
+      Hardware Model: QEMU Virtual Machine
+    Hardware Version: virt-10.0
+    Firmware Version: 0.0.0
+       Firmware Date: Fri 2015-02-06
+        Firmware Age: 11y 1month 2w 3d

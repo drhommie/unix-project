@@ -1,0 +1,9 @@
+NAME   FSTYPE FSVER LABEL      UUID                                 FSAVAIL FSUSE% MOUNTPOINTS
+zram0  swap   1     zram0      2adc0091-882a-46ac-9904-cfc6f1b4fddf                [SWAP]
+vda                                                                                
+├─vda1 vfat   FAT32            266B-DDAB                             562,2M     6% /boot/efi
+├─vda2 ext4   1.0              cba3f202-1e89-469d-a927-2b5241d1b0f9    1,3G    26% /boot
+└─vda3 btrfs        fedora     3d1c4a39-c68e-4c2a-85e8-b596fb05af7a   41,7G    10% /home
+                                                                                   /
+vdb                                                                                
+└─vdb1 ext4   1.0   MEPHI_DATA fdbda7a4-e96b-4c67-aa0a-b4435ac886e8    4,6G     0% /data/mephi-web

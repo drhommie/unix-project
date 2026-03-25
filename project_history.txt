@@ -1,0 +1,191 @@
+    1  history -w
+    2  history -w
+    3  history
+    4  mkdir ~/dir-M255983
+    5  ls -ld ~/dir-M255983
+    6  sudo useradd -u 5501 -m user1
+    7  sudo useradd -u 5502 -m user2
+    8  sudo useradd -u 5503 -m user3
+    9  id user1
+   10  id user2
+   11  id user3
+   12  sudo groupadd -g 4444 curators
+   13  sudo useradd -m curator1
+   14  sudo useradd -m curator2
+   15  sudo usermod -aG curators curator1
+   16  sudo usermod -aG curators curator2
+   17  id curator1
+   18  id curator2
+   19  sudo passwd user1
+   20  sudo passwd user2
+   21  sudo passwd user3
+   22  sudo passwd curator1
+   23  sudo passwd curator2
+   24  sudo grep -E '^(user1|user2|user3|curator1|curator2):' /etc/shadow
+   25  chmod 700 ~/dir-M255983
+   26  setfacl -m u:user1:rwx,u:user2:rwx,u:user3:rwx,g:curators:r-x,o::--- ~/dir-M255983
+   27  setfacl -d -m u:user1:rwx,u:user2:rwx,u:user3:rwx,g:curators:r-x,o::--- ~/dir-M255983
+   28  getfacl ~/dir-M255983
+   29  chmod g+s ~/dir-M255983
+   30  sudo chgrp curators ~/dir-M255983
+   31  ls -ld ~/dir-M255983
+   32  chmod o+x /home/vlad
+   33  ls -ld /home/vlad
+   34  sudo -iu user1 bash -lc 'echo "hello from user1" > /home/vlad/dir-M255983/file1'
+   35  sudo -iu user2 bash -lc 'cat /home/vlad/dir-M255983/file1'
+   36  sudo -iu user2 bash -lc 'echo "append from user2" >> /home/vlad/dir-M255983/file1'
+   37  sudo -iu curator1 bash -lc 'cat /home/vlad/dir-M255983/file1'
+   38  sudo -iu curator1 bash -lc 'echo "fail write" >> /home/vlad/dir-M255983/file1'
+   39  sudo useradd -m outsider
+   40  sudo passwd outsider
+   41  sudo -iu outsider bash -lc 'ls /home/vlad/dir-M255983'
+   42  sudo -iu outsider bash -lc 'cat /home/vlad/dir-M255983/file1'
+   43  getfacl /home/vlad/dir-M255983/file1
+   44  echo "=== history ===" > ~/report.txt
+   45  history >> ~/report.txt
+   46  echo "" >> ~/report.txt
+   47  echo "=== /etc/passwd ===" >> ~/report.txt
+   48  cat /etc/passwd >> ~/report.txt
+   49  echo "" >> ~/report.txt
+   50  echo "=== /etc/group ===" >> ~/report.txt
+   51  cat /etc/group >> ~/report.txt
+   52  echo "" >> ~/report.txt
+   53  echo "=== self-check ===" >> ~/report.txt
+   54  echo '$ getfacl /home/vlad/dir-M255983' >> ~/report.txt
+   55  getfacl /home/vlad/dir-M255983 >> ~/report.txt
+   56  echo "" >> ~/report.txt
+   57  echo '$ getfacl /home/vlad/dir-M255983/file1' >> ~/report.txt
+   58  getfacl /home/vlad/dir-M255983/file1 >> ~/report.txt
+   59  ip
+   60  ip a
+   61  nmcli con show
+   62  nmcli con mod "Проводное подключение 1" ipv4.addresses 192.168.1.100/24
+   63  nmcli con mod "Проводное подключение 1" ipv4.gateway 192.168.1.1
+   64  nmcli con mod "Проводное подключение 1" ipv4.dns 8.8.8.8
+   65  nmcli con mod "Проводное подключение 1" ipv4.method manual
+   66  nmcli con down "Проводное подключение 1"
+   67  nmcli con up "Проводное подключение 1"
+   68  ip a
+   69  ip route
+   70  hostnamectl set-hostname mephi-2026.domain.local
+   71  hostnamectl
+   72  ping -c 4 8.8.8.8 > /tmp/network_check.txt
+   73  ping -c 4 192.168.1.1 >> /tmp/network_check.txt
+   74  hostnamectl
+   75  cat /tmp/network_check.txt
+   76  dnf install nginx tcpdump libcap-ng-utils -y
+   77  nmcli con mod "Проводное подключение 1" ipv4.method auto
+   78  nmcli con down "Проводное подключение 1"
+   79  nmcli con up "Проводное подключение 1"
+   80  ping -c 2 8.8.8.8
+   81  sudo dnf install nginx tcpdump libcap-ng-utils -y
+   82  lsblk
+   83  sudo fdisk /dev/vdb
+   84  lsblk
+   85  sudo mkfs.ext4 -L MEPHI_DATA /dev/vdb1
+   86  lsblk -f
+   87  sudo mkdir -p /data/mephi-web
+   88  sudo mount /dev/vdb1 /data/mephi-web
+   89  df -h
+   90  sudo nano /etc/fstab
+   91  sudo umount /data/mephi-web
+   92  sudo mount -a
+   93  df -h
+   94  cat /etc/fstab
+   95  df -h
+   96  sudo systemctl start nginx
+   97  systemctl status nginx
+   98  sudo systemctl enable nginx
+   99  systemctl is-enabled nginx
+  100  curl localhost
+  101  journalctl -u nginx --since "5 minutes ago" > /tmp/nginx_recent_logs.txt
+  102  systemctl is-enabled nginx
+  103  curl localhost
+  104  cat /tmp/nginx_recent_logs.txt
+  105  getenforce
+  106  sudo semanage fcontext -a -t httpd_sys_content_t "/data/mephi-web(/.*)?"
+  107  sudo restorecon -Rv /data/mephi-web
+  108  ls -Zd /data/mephi-web
+  109  sudo chmod -s /usr/bin/tcpdump
+  110  sudo setcap cap_net_raw,cap_net_admin+ep /usr/bin/tcpdump
+  111  getcap /usr/bin/tcpdump
+  112  sudo -u vlad tcpdump --help
+  113  getenforce
+  114  ls -Zd /data/mephi-web
+  115  getcap /usr/bin/tcpdump
+  116  sudo -u vlad tcpdump --help
+  117  sudo nano /etc/ssh/sshd_config
+  118  sudo systemctl restart sshd
+  119  grep PermitRootLogin /etc/ssh/sshd_config
+  120  sudo grep PermitRootLogin /etc/ssh/sshd_config
+  121  echo "root" | sudo tee /etc/ssh/denied_users
+  122  sudo nano /etc/pam.d/login
+  123  su - root
+  124  cat /etc/ssh/denied_users
+  125  head -n 5 /etc/pam.d/login
+  126  sudo nano /data/mephi-web/index.html
+  127  curl localhost
+  128  cat /data/mephi-web/index.html
+  129  grep -R "root" /etc/nginx
+  130  sudo nano /etc/nginx/nginx.conf
+  131  sudo nginx -t
+  132  sudo systemctl reload nginx
+  133  curl localhost
+  134  sudo nano /etc/nginx/default.d/*.conf
+  135  ls -l /etc/nginx/default.d
+  136  grep -R "root\|index\|return\|rewrite" /etc/nginx/default.d /etc/nginx/conf.d
+  137  sudo nano /etc/nginx/default.d/*.conf
+  138  sudo rm -f /usr/share/nginx/html/index.html
+  139  sudo systemctl restart nginx
+  140  curl localhost
+  141  ls -ld /data
+  142  ls -ld /data/mephi-web
+  143  ls -l /data/mephi-web
+  144  cat /data/mephi-web/index.html
+  145  ls -lZ /data/mephi-web
+  146  sudo nginx -T | grep -nE "server_name|listen|root|index"
+  147  sudo nano /etc/nginx/nginx.conf
+  148  sudo nginx -T | grep -nE "server_name|listen|root|index"
+  149  sudo systemctl restart nginx
+  150  curl localhost
+  151  hostnamectl
+  152  ip a
+  153  ip route
+  154  cat /tmp/network_check.txt
+  155  rpm -qa | grep -E "nginx|tcpdump|cap"
+  156  ls /tmp | grep tcpdump
+  157  lsblk -f
+  158  cat /etc/fstab
+  159  df -h
+  160  systemctl status nginx --no-pager
+  161  systemctl is-enabled nginx
+  162  cat /tmp/nginx_recent_logs.txt
+  163  id mephi-admin
+  164  getent group mephi-devs
+  165  ls -ld /data/mephi-web
+  166  getenforce
+  167  ls -Zd /data/mephi-web
+  168  ls -lZ /data/mephi-web
+  169  getcap /usr/bin/tcpdump
+  170  sudo -u vlad tcpdump --help
+  171  sudo grep PermitRootLogin /etc/ssh/sshd_config
+  172  cat /etc/ssh/denied_users
+  173  head -n 5 /etc/pam.d/login
+  174  cat /data/mephi-web/index.html
+  175  curl localhost
+  176  ping -c 4 8.8.8.8 > /tmp/network_check.txt
+  177  ping -c 4 192.168.64.1 >> /tmp/network_check.txt
+  178  cat /tmp/network_check.txt
+  179  sudo groupadd mephi-devs
+  180  sudo useradd -m -G mephi-devs mephi-admin
+  181  echo 'mephi-admin:P@ssw0rd2026' | sudo chpasswd
+  182  sudo chown mephi-admin:mephi-devs /data/mephi-web
+  183  sudo chmod 2775 /data/mephi-web
+  184  id mephi-admin
+  185  getent group mephi-devs
+  186  ls -ld /data/mephi-web
+  187  cat /tmp/network_check.txt
+  188  id mephi-admin
+  189  getent group mephi-devs
+  190  ls -ld /data/mephi-web
+  191  history > ~/project_history.txt

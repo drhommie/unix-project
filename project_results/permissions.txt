@@ -1,0 +1,1 @@
+drwxrwsr-x. 3 mephi-admin mephi-devs 4096 мар 25 17:39 /data/mephi-web

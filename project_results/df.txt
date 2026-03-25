@@ -1,0 +1,15 @@
+Файловая система Размер Использовано  Дост Использовано% Cмонтировано в
+/dev/vda3           48G         4,7G   42G           10% /
+devtmpfs           1,9G            0  1,9G            0% /dev
+tmpfs              1,9G         108K  1,9G            1% /dev/shm
+efivarfs           256K          16K  240K            7% /sys/firmware/efi/efivars
+tmpfs              778M         1,7M  776M            1% /run
+tmpfs              1,0M            0  1,0M            0% /run/credentials/systemd-journald.service
+/dev/vda3           48G         4,7G   42G           10% /home
+tmpfs              1,9G          48K  1,9G            1% /tmp
+/dev/vda2          2,0G         509M  1,3G           28% /boot
+/dev/vda1          599M          37M  563M            7% /boot/efi
+tmpfs              1,0M            0  1,0M            0% /run/credentials/systemd-resolved.service
+tmpfs              1,0M            0  1,0M            0% /run/credentials/serial-getty@ttyAMA0.service
+tmpfs              389M         124K  389M            1% /run/user/1000
+/dev/vdb1          4,9G         1,3M  4,6G            1% /data/mephi-web
